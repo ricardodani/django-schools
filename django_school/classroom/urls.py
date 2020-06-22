@@ -5,6 +5,8 @@ from .views import classroom, students, teachers
 urlpatterns = [
     path('', classroom.home, name='home'),
 
+    path('api/quiz/', classroom.QuizAPIView.as_view(), name='api_quiz_list'),
+
     path('students/', include(([
         path('', students.QuizListView.as_view(), name='quiz_list'),
         path('s/', students.StudentList.as_view(), name='student_list'),

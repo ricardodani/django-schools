@@ -1,5 +1,8 @@
 from django.shortcuts import redirect, render
 from django.views.generic import TemplateView
+from rest_framework.generics import ListAPIView
+from classroom.serializers import QuizSerializer
+from classroom.models import Quiz
 
 
 class SignUpView(TemplateView):
@@ -15,3 +18,8 @@ def home(request):
         else:
             return redirect('admin:index')
     return render(request, 'classroom/home.html')
+
+
+class QuizAPIView(ListAPIView):
+    queryset = Quiz.objects.all()
+    serializer_class = QuizSerializer
